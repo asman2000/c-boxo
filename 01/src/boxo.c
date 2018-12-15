@@ -24,7 +24,7 @@ int main(void)
 
 	Close();
 
-	return 0;	//ok
+	return 0;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -44,7 +44,7 @@ static int Init(void)
 		return -1;
 	}
 
-	return 0;	//ok
+	return 0;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -61,7 +61,7 @@ static void Loop(void)
 {
 	while (TRUE)
 	{
-		ULONG signals = Wait(windowSignal);
+		const ULONG signals = Wait(windowSignal);
 
 		if(signals & windowSignal)
 		{

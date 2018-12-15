@@ -1,5 +1,6 @@
 #include "window.h"
 #include "input.h"
+#include <assert.h>
 
 #include <proto/exec.h>
 #include <proto/intuition.h>
@@ -68,11 +69,7 @@ void WindowProcessSignals(void)
 
 struct RastPort* WindowGetRastPort(void)
 {
-	/* TODO change to assert */
-	if (NULL == window)
-	{
-		return NULL;
-	}
+	assert(window != NULL);
 	
 	return window->RPort;
 }

@@ -11,9 +11,6 @@
 
 static struct BitMap* bitmapTiles = NULL;
 
-struct RastPort* rastPortTiles = NULL;
-struct RastPort rastport;
-
 struct RastPort* rastPortWindow = NULL;
 
 static int GfxGetBitmapTiles(Object* o);
@@ -22,8 +19,6 @@ static int GfxGetBitmapTiles(Object* o);
 int GfxInit(void)
 {
 	int result = -1;
-	
-	rastPortWindow = WindowGetRastPort();
 
 	struct Screen* screen = LockPubScreen(NULL);
 
@@ -40,6 +35,8 @@ int GfxInit(void)
 	}
 
 	UnlockPubScreen(NULL, screen);
+
+	rastPortWindow = WindowGetRastPort();
 
 	return result;
 }
@@ -63,10 +60,6 @@ static int GfxGetBitmapTiles(Object* o)
 		BltBitMap(bm, 0, 0, bitmapTiles, 0, 0, width, height,
 			0xC0, 0xFF, NULL);
 
-		rastPortTiles = &rastport;
-		InitRastPort(rastPortTiles);
-		rastPortTiles->BitMap = bitmapTiles;
-
 		return 0;
 	}
 	
@@ -83,7 +76,7 @@ void GfxKill(void)
 /*--------------------------------------------------------------------------*/
 void GfxDrawTitle(void)
 {
-	BltBitMapRastPort(bitmapTiles, 0, 16, rastPortWindow, 96, 24, 128, 32, 0xC0);
-
+	BltBitMapRastPort(bitmapTiles, 0, 16,
+		rastPortWindow, 96, 24, 128, 32, 0xC0);
 }
 /*--------------------------------------------------------------------------*/

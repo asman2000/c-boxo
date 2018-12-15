@@ -83,7 +83,6 @@ static void Loop(void)
 	while (!end)
 	{
 		const ULONG windowSignal = 1L << window->UserPort->mp_SigBit;
-
 		const ULONG signals = Wait(windowSignal | SIGBREAKF_CTRL_C);
 
 		if(signals & SIGBREAKF_CTRL_C)
@@ -106,9 +105,8 @@ static BOOL WindowDoSingnals()
 
 	while (TRUE)
 	{
-		struct IntuiMessage* msg;
-		
-		msg = (struct IntuiMessage*) GetMsg(window->UserPort);
+		struct IntuiMessage* msg = (struct IntuiMessage*)
+			GetMsg(window->UserPort);
 
 		if (NULL == msg)
 		{
