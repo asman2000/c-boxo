@@ -5,18 +5,17 @@
 #include <dos/dos.h>
 #include <intuition/intuition.h>
 
-//----------------------------------------------------------------------------
+/*--------------------------------------------------------------------------*/
 
 struct IntuitionBase* IntuitionBase;
 struct Window* window = NULL;
-
 
 static int Init(void);
 static void Loop(void);
 static void Close(void);
 static BOOL WindowDoSingnals();
 
-//----------------------------------------------------------------------------
+/*--------------------------------------------------------------------------*/
 
 int main(void)
 {
@@ -27,10 +26,10 @@ int main(void)
 
 	Close();
 
-	return 0;	//ok
+	return 0;
 }
 
-//----------------------------------------------------------------------------
+/*--------------------------------------------------------------------------*/
 
 static int Init(void)
 {
@@ -60,10 +59,10 @@ static int Init(void)
 		return -1;
 	}
 
-	return 0;	//ok
+	return 0;
 }
 
-//----------------------------------------------------------------------------
+/*--------------------------------------------------------------------------*/
 
 static void Close(void)
 {
@@ -75,7 +74,7 @@ static void Close(void)
 	CloseLibrary((struct Library*) IntuitionBase);
 }
 
-//----------------------------------------------------------------------------
+/*--------------------------------------------------------------------------*/
 
 static void Loop(void)
 {
@@ -83,9 +82,9 @@ static void Loop(void)
 
 	while (!end)
 	{
-		ULONG windowSignal = 1L << window->UserPort->mp_SigBit;
+		const ULONG windowSignal = 1L << window->UserPort->mp_SigBit;
 
-		ULONG signals = Wait(windowSignal | SIGBREAKF_CTRL_C);
+		const ULONG signals = Wait(windowSignal | SIGBREAKF_CTRL_C);
 
 		if(signals & SIGBREAKF_CTRL_C)
 		{
@@ -99,7 +98,7 @@ static void Loop(void)
 	}
 }
 
-//----------------------------------------------------------------------------
+/*--------------------------------------------------------------------------*/
 
 static BOOL WindowDoSingnals()
 {
@@ -108,7 +107,6 @@ static BOOL WindowDoSingnals()
 	while (TRUE)
 	{
 		struct IntuiMessage* msg;
-		ULONG class;
 		
 		msg = (struct IntuiMessage*) GetMsg(window->UserPort);
 
@@ -117,17 +115,15 @@ static BOOL WindowDoSingnals()
 			break;
 		}
 
-		class = msg->Class;
-
-		ReplyMsg((struct Message*) msg);
-
-		if (IDCMP_CLOSEWINDOW == class)
+		if (IDCMP_CLOSEWINDOW == msg->Class)
 		{
 			result = TRUE;
 		}
+
+		ReplyMsg((struct Message*) msg);
 	}
 
 	return result;
 }
 
-//----------------------------------------------------------------------------
+/*--------------------------------------------------------------------------*/
