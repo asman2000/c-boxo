@@ -53,7 +53,7 @@ static int Init(void)
 		WA_IDCMP, IDCMP_CLOSEWINDOW | IDCMP_RAWKEY,
 		TAG_END);
 
-	if(NULL == window)
+	if (NULL == window)
 	{
 		return -1;
 	}
@@ -84,12 +84,12 @@ static void Loop(void)
 		const ULONG windowSignal = 1L << window->UserPort->mp_SigBit;
 		const ULONG signals = Wait(windowSignal | SIGBREAKF_CTRL_C);
 
-		if(signals & SIGBREAKF_CTRL_C)
+		if (signals & SIGBREAKF_CTRL_C)
 		{
 			end = TRUE;
 		}
 
-		if(signals & windowSignal)
+		if (signals & windowSignal)
 		{
 			end = WindowDoSingnals();
 		}

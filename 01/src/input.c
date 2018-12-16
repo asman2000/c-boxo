@@ -10,7 +10,7 @@ static UBYTE keys[128];
 
 /*--------------------------------------------------------------------------*/
 
-void InputGetKeys(UWORD msgCode)
+void InputSetKeys(UWORD msgCode)
 {
 	keys[msgCode & 0x7f] = msgCode & 0x80;
 }

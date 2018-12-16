@@ -58,7 +58,7 @@ void WindowProcessSignals(void)
 			break;
 		}
 
-		InputGetKeys(msg->Code);
+		InputSetKeys(msg->Code);
 
 		ReplyMsg((struct Message*)msg);
 	}
