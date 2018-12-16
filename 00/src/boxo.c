@@ -1,6 +1,5 @@
 #include <proto/exec.h>
 #include <proto/intuition.h>
-#include <proto/graphics.h>
 
 #include <dos/dos.h>
 #include <intuition/intuition.h>
