@@ -4,7 +4,7 @@
 
 #include <exec/types.h>
 
-extern void InputGetKeys(UWORD msgCode);
+extern void InputSetKeys(UWORD msgCode);
 extern BOOL InputIsExitToOsPressed(void);
 
 /*--------------------------------------------------------------------------*/

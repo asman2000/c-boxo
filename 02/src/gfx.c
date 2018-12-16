@@ -1,12 +1,12 @@
 #include "gfx.h"
 #include "window.h"
 
-
 #include <proto/exec.h>
 #include <proto/graphics.h>
 #include <proto/intuition.h>
 #include <proto/datatypes.h>
 #include <datatypes/pictureclass.h> 
+
 /*--------------------------------------------------------------------------*/
 
 static struct BitMap* bitmapTiles = NULL;
@@ -14,6 +14,7 @@ static struct BitMap* bitmapTiles = NULL;
 struct RastPort* rastPortWindow = NULL;
 
 static int GfxGetBitmapTiles(Object* o);
+
 /*--------------------------------------------------------------------------*/
 
 int GfxInit(void)

@@ -4,8 +4,6 @@
 
 #include <proto/exec.h>
 
-#include <dos/dos.h>
-
 /*--------------------------------------------------------------------------*/
 
 struct IntuitionBase* IntuitionBase = NULL;
@@ -89,7 +87,7 @@ static void Loop(void)
 	{
 		const ULONG signals = Wait(windowSignal);
 
-		if(signals & windowSignal)
+		if (signals & windowSignal)
 		{
 			WindowProcessSignals();
 		}
