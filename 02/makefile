@@ -1,5 +1,5 @@
 #
-# boxo - step 01
+# boxo - step 02
 #
 
 CC = vc
